@@ -4,18 +4,34 @@ function game(numGames) {
     let computerWins = 0;
 
     for (let i = 0; i < numGames; i ++) {
-        let playerSelection = prompt("What hand do you play?: ");
-        let computerSelection = computerPlay();
+        console.log("Game #" + (i + 1))
+        let playerSelection;
+        while (true) {
+            let playerSelectionPrompt = prompt("What hand do you play?: ");
 
-        // Catch null
-        if (playerSelection == null) {
-            break;
+            // Catch null
+            if (playerSelectionPrompt == null) {
+                console.log("Wrong input. Please try again");
+                continue;
+            }
+
+            // Catch wrong input
+            playerSelectionPrompt = playerSelectionPrompt.toLowerCase();
+            if (["rock", "paper", "scissors"].indexOf(playerSelectionPrompt) < 0) {
+                console.log("Wrong input. Please try again");
+                continue;
+            } else {
+                playerSelection = playerSelectionPrompt;
+                break;
+            }
+
         }
 
-        let result = playGround(playerSelection, computerSelection);
-        if (result == "you") {
+        let computerSelection = computerPlay();
+        let winner = playGround(playerSelection, computerSelection);
+        if (winner == "you") {
             playerWins ++;
-        } else if (result == "both") {
+        } else if (winner == "both") {
             playerWins ++;
             computerWins ++;
         } else {
@@ -29,24 +45,22 @@ function game(numGames) {
 function playGround(playerSelection, computerSelection) {
 
     let winner = "both";
-
-    let playerSelectionLower = playerSelection.toLowerCase();
     let computerSelectionLower = computerSelection.toLowerCase();
 
-    if (computerSelectionLower === playerSelectionLower) {
-        console.log("It's a draw! You both got " + capitalizeFirstLetter(playerSelectionLower));
-    } else if ((playerSelectionLower == "rock"
+    if (computerSelectionLower === playerSelection) {
+        console.log("It's a draw! You both got " + capitalizeFirstLetter(playerSelection));
+    } else if ((playerSelection == "rock"
     && computerSelectionLower == "scissors")
-    || (playerSelectionLower == "scissors" 
+    || (playerSelection == "scissors" 
     && computerSelectionLower == "paper")
-    || (playerSelectionLower == "paper" 
+    || (playerSelection == "paper" 
     && computerSelectionLower == "rock")) {
         winner = "you";
-        console.log("You win!!! " + capitalizeFirstLetter(playerSelectionLower) + " beats " + computerSelection);
+        console.log("You win!!! " + capitalizeFirstLetter(playerSelection) + " beats " + computerSelection);
         
     } else {
         winner = "computer";
-        console.log("You lose... " + capitalizeFirstLetter(playerSelectionLower) + " loses to " + computerSelection);
+        console.log("You lose... " + capitalizeFirstLetter(playerSelection) + " loses to " + computerSelection);
     }
 
     return winner;
