@@ -1,7 +1,68 @@
 <!DOCTYPE html>
 
+<html lang="en">
+
 <head>
-    <script src=app.js>
-        
-    </script>
+    <title>Jan Ken Pon!</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css"/>
 </head>
+
+<body>
+    <div id="main">
+        <div id="descr-container">
+            <img id="title" src="rsc/main-title.png">
+            <div id="descr-all">
+                <div id="descr1" class="desc disappear"><b>It's summer time!!~~</b></div>
+                <div id="descr2" class="desc desc-small disappear">All of the greatest Jan Ken Pon Heroes have gathered here...</div>
+                <div id="descr3" class="desc desc-small disappear">for the<b>Ultimate Showdown!!</b></div>
+                <div id="descr4" class="desc desc-small disappear">Now...</div>
+                <div id="descr5" class="desc desc-small disappear">Do you have what it takes to become...</div>
+                <div id="descr6" class="desc disappear"><b>...The Master Pon!?</b></div>
+
+                <div id="player-move"><b>Your move, best of 5!</b></div>
+            </div>
+        </div>
+
+        <div id="game-container">
+            <div id="button-container">
+                <div id="rock" class="player-choice-button button">
+                    <img class="player-choice-image" src="rsc/rock.png" alt="Rock"/>
+                    <div id="player-choice-desc"><b>Rock</b></div>
+                </div>
+                <div id="paper" class="player-choice-button button">
+                    <img class="player-choice-image" src="rsc/paper.png" alt="Paper"/>
+                    <div id="player-choice-desc"><b>Paper</b></div>
+                </div>
+                <div id="scissors" class="player-choice-button button">
+                    <img class="player-choice-image" src="rsc/scissors.png" alt="Scissors"/>
+                    <div id="player-choice-desc"><b>Scissors</b></div>
+                </div>
+            </div>
+
+            <div id="result-container">
+                <div id="result-announce">""</div>
+            </div>
+
+            <div id="score-labels-container">
+                <div id="player-score-label" class="score-label">You</div>
+                <div id="opponent-score-label" class="score-label">Opponent</div>
+            </div>
+
+            <div id="score-container">
+                <div id="player-score" class="score">0</div>
+                <div id="opponent-score" class="score">0</div>
+            </div>
+        </div>
+    </div>
+        
+    <div id="game-ended" class="disappear">
+        <div id="end-desc"></div>
+        <a id="retry-button button"></a>
+    </div>
+
+    <script src="app.js"></script>
+
+</body>
+
+</html>
