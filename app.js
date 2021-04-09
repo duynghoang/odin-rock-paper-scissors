@@ -2,8 +2,26 @@ let computerSelection;
 let playerSelection;
 let playerScore = 0;
 let computerScore = 0;
+const descrContainer = document.querySelector("#descr-container")
+const descrAll = document.querySelector("#descr-all")
 const main = document.querySelector("#main");
 const result = document.querySelector("#result-announce");
+
+descr1 = document.querySelector("#descr1")
+descr2 = document.querySelector("#descr2")
+descr3 = document.querySelector("#descr3")
+descr4 = document.querySelector("#descr4")
+descr5 = document.querySelector("#descr5")
+descr6 = document.querySelector("#descr6")
+allDescr = document.querySelectorAll(".desc")
+descrTimeout = 3000
+removeClass(selections=allDescr, className="disappear", time=3000, idx=0)
+allDescr = document.querySelectorAll(".desc")
+setTimeout(function(){addClass(selections=allDescr, className="disappear", time=descrTimeout, idx=0)}, descrTimeout)
+setTimeout(function(){
+    descrContainer.classList.add("disappear");
+    main.classList.remove("disappear");
+}, allDescr.length*descrTimeout)
 
 let allSelections = document.querySelectorAll('.player-choice-button')
 
@@ -17,6 +35,28 @@ allSelections.forEach(selection => {
         }
     });
 });
+
+
+function addClass(selections, className, time, idx) {
+    if (typeof idx === 'undefined') {idx = 0}
+    if (selections.length>idx) {
+        selections[idx].classList.add(className)
+        setTimeout(function() {
+            addClass(selections, className, time, idx+1)
+        }, time)
+    }
+}
+
+
+function removeClass(selections, className, time, idx) {
+    if (typeof idx === 'undefined') {idx = 0}
+    if (selections.length>idx) {
+        selections[idx].classList.remove(className)
+        setTimeout(function() {
+            removeClass(selections, className, time, idx+1)
+        }, time)
+    }
+}
 
 
 function playRound(playerSelection, computerSelection) {
