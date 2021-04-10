@@ -3,25 +3,17 @@ let playerSelection;
 let playerScore = 0;
 let computerScore = 0;
 const descrContainer = document.querySelector("#descr-container")
-const descrAll = document.querySelector("#descr-all")
 const main = document.querySelector("#main");
 const result = document.querySelector("#result-announce");
+const title = document.querySelector("#title");
 
-descr1 = document.querySelector("#descr1")
-descr2 = document.querySelector("#descr2")
-descr3 = document.querySelector("#descr3")
-descr4 = document.querySelector("#descr4")
-descr5 = document.querySelector("#descr5")
-descr6 = document.querySelector("#descr6")
-allDescr = document.querySelectorAll(".desc")
-descrTimeout = 3000
-removeClass(selections=allDescr, className="disappear", time=3000, idx=0)
-allDescr = document.querySelectorAll(".desc")
-setTimeout(function(){addClass(selections=allDescr, className="disappear", time=descrTimeout, idx=0)}, descrTimeout)
-setTimeout(function(){
-    descrContainer.classList.add("disappear");
-    main.classList.remove("disappear");
-}, allDescr.length*descrTimeout)
+const descr1 = document.querySelector("#descr1")
+let allDesc = document.querySelectorAll(".desc")
+let descrTimeout = 3000
+let descrTimeoutAnimation = 4500
+
+
+introduction();
 
 let allSelections = document.querySelectorAll('.player-choice-button')
 
@@ -35,6 +27,73 @@ allSelections.forEach(selection => {
         }
     });
 });
+
+
+function introduction() {
+    title.classList.add("load")
+    setTimeout(function() {
+        descr1.classList.add("desc-animate")
+    }, descrTimeout)
+    descrTimeout += descrTimeoutAnimation
+    setTimeout(function() {
+        descr1.classList.remove("desc-animate")
+    }, descrTimeout)
+
+    descrTimeout += 1000
+    setTimeout(function() {
+        descr1.textContent = "All of the greatest Jan Ken Pon Heroes have gathered here...";
+        descr1.classList.add("desc-animate")
+    }, descrTimeout)
+    descrTimeout += descrTimeoutAnimation
+    setTimeout(function() {descr1.classList.remove("desc-animate")}, descrTimeout)
+
+    descrTimeout += 1000
+    setTimeout(function() {
+        descr1.textContent = "for the Ultimate Showdown!!";
+        descr1.style["font-weight"] = "bold"
+        descr1.style["font-size"] = "100px"
+        descr1.classList.add("desc-animate")
+    }, descrTimeout)
+    descrTimeout += descrTimeoutAnimation
+    setTimeout(function() {descr1.classList.remove("desc-animate")}, descrTimeout)
+
+    descrTimeout += 1000
+    setTimeout(function() {
+        descr1.textContent = "Now...";
+        descr1.style["font-weight"] = "normal"
+        descr1.style["font-size"] = "50px"
+        descr1.classList.add("desc-animate")
+    }, descrTimeout)
+    descrTimeout += descrTimeoutAnimation
+    setTimeout(function() {descr1.classList.remove("desc-animate")}, descrTimeout)
+
+    descrTimeout += 1000
+    setTimeout(function() {
+        descr1.textContent = "Do you have what it takes to become...";
+        descr1.classList.add("desc-animate")
+    }, descrTimeout)
+    descrTimeout += descrTimeoutAnimation
+    setTimeout(function() {descr1.classList.remove("desc-animate")}, descrTimeout)
+
+    descrTimeout += 1000
+    setTimeout(function() {
+        descr1.textContent = "...The Master Pon!?";
+        descr1.style["font-weight"] = "bold"
+        descr1.style["font-size"] = "100px"
+        descr1.classList.add("desc-animate")
+    }, descrTimeout)
+    descrTimeout += descrTimeoutAnimation + 2000
+    setTimeout(function() {descr1.classList.remove("desc-animate")}, descrTimeout)
+
+    descrTimeout += 1000
+    setTimeout(function() {
+        descr1.style["font-size"] = "10px"
+        descr1.style["padding"] = "0 0 0 0"
+
+        main.classList.remove("disappear")
+    }, descrTimeout)
+
+}
 
 
 function addClass(selections, className, time, idx) {
