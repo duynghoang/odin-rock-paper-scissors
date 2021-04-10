@@ -9,14 +9,15 @@ const main = document.querySelector("#main");
 const title = document.querySelector("#title");
 const result = document.querySelector("#result-announce");
 const descr = document.querySelector("#descr")
-// let descrTimeout = 3000
-// let descrTimeoutNext = 1000
-// let descrTimeoutAnimation = 4500
+
+let descrTimeout = 3000
+let descrTimeoutNext = 1000
+let descrTimeoutAnimation = 4500
 
 
-let descrTimeout = 0
-let descrTimeoutNext = 0
-let descrTimeoutAnimation = 0
+// let descrTimeout = 0
+// let descrTimeoutNext = 0
+// let descrTimeoutAnimation = 0
 
 let resultTimeout = 0
 let resultTimeoutNext = 2000
