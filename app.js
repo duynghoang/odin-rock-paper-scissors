@@ -3,20 +3,27 @@ let playerSelection;
 let playerScore = 0;
 let computerScore = 0;
 const descrContainer = document.querySelector("#descr-container")
+
+const body = document.querySelector("#body")
 const main = document.querySelector("#main");
-const result = document.querySelector("#result-announce");
 const title = document.querySelector("#title");
+const result = document.querySelector("#result-announce");
+const descr = document.querySelector("#descr")
+// let descrTimeout = 3000
+// let descrTimeoutNext = 1000
+// let descrTimeoutAnimation = 4500
 
-const descr1 = document.querySelector("#descr1")
-let allDesc = document.querySelectorAll(".desc")
-let descrTimeout = 3000
-let descrTimeoutAnimation = 4500
 
+let descrTimeout = 0
+let descrTimeoutNext = 0
+let descrTimeoutAnimation = 0
+
+let resultTimeout = 0
+let resultTimeoutNext = 2000
 
 introduction();
 
 let allSelections = document.querySelectorAll('.player-choice-button')
-
 allSelections.forEach(selection => {
     selection.addEventListener("click", () => {
         playerSelection = selection.id.toLowerCase();
@@ -32,63 +39,63 @@ allSelections.forEach(selection => {
 function introduction() {
     title.classList.add("load")
     setTimeout(function() {
-        descr1.classList.add("desc-animate")
+        descr.classList.add("desc-animate")
     }, descrTimeout)
     descrTimeout += descrTimeoutAnimation
     setTimeout(function() {
-        descr1.classList.remove("desc-animate")
+        descr.classList.remove("desc-animate")
     }, descrTimeout)
 
-    descrTimeout += 1000
+    descrTimeout += descrTimeoutNext
     setTimeout(function() {
-        descr1.textContent = "All of the greatest Jan Ken Pon Heroes have gathered here...";
-        descr1.classList.add("desc-animate")
-    }, descrTimeout)
-    descrTimeout += descrTimeoutAnimation
-    setTimeout(function() {descr1.classList.remove("desc-animate")}, descrTimeout)
-
-    descrTimeout += 1000
-    setTimeout(function() {
-        descr1.textContent = "for the Ultimate Showdown!!";
-        descr1.style["font-weight"] = "bold"
-        descr1.style["font-size"] = "100px"
-        descr1.classList.add("desc-animate")
+        descr.textContent = "All of the greatest Jan Ken Pon Heroes have gathered here...";
+        descr.classList.add("desc-animate")
     }, descrTimeout)
     descrTimeout += descrTimeoutAnimation
-    setTimeout(function() {descr1.classList.remove("desc-animate")}, descrTimeout)
+    setTimeout(function() {descr.classList.remove("desc-animate")}, descrTimeout)
 
-    descrTimeout += 1000
+    descrTimeout += descrTimeoutNext
     setTimeout(function() {
-        descr1.textContent = "Now...";
-        descr1.style["font-weight"] = "normal"
-        descr1.style["font-size"] = "50px"
-        descr1.classList.add("desc-animate")
+        descr.textContent = "for the Ultimate Showdown!!";
+        descr.style["font-weight"] = "bold"
+        descr.style["font-size"] = "100px"
+        descr.classList.add("desc-animate")
     }, descrTimeout)
     descrTimeout += descrTimeoutAnimation
-    setTimeout(function() {descr1.classList.remove("desc-animate")}, descrTimeout)
+    setTimeout(function() {descr.classList.remove("desc-animate")}, descrTimeout)
 
-    descrTimeout += 1000
+    descrTimeout += descrTimeoutNext
     setTimeout(function() {
-        descr1.textContent = "Do you have what it takes to become...";
-        descr1.classList.add("desc-animate")
+        descr.textContent = "Now...";
+        descr.style["font-weight"] = "normal"
+        descr.style["font-size"] = "50px"
+        descr.classList.add("desc-animate")
     }, descrTimeout)
     descrTimeout += descrTimeoutAnimation
-    setTimeout(function() {descr1.classList.remove("desc-animate")}, descrTimeout)
+    setTimeout(function() {descr.classList.remove("desc-animate")}, descrTimeout)
 
-    descrTimeout += 1000
+    descrTimeout += descrTimeoutNext
     setTimeout(function() {
-        descr1.textContent = "...The Master Pon!?";
-        descr1.style["font-weight"] = "bold"
-        descr1.style["font-size"] = "100px"
-        descr1.classList.add("desc-animate")
+        descr.textContent = "Do you have what it takes to become...";
+        descr.classList.add("desc-animate")
     }, descrTimeout)
-    descrTimeout += descrTimeoutAnimation + 2000
-    setTimeout(function() {descr1.classList.remove("desc-animate")}, descrTimeout)
+    descrTimeout += descrTimeoutAnimation
+    setTimeout(function() {descr.classList.remove("desc-animate")}, descrTimeout)
 
-    descrTimeout += 1000
+    descrTimeout += descrTimeoutNext
     setTimeout(function() {
-        descr1.style["font-size"] = "10px"
-        descr1.style["padding"] = "0 0 0 0"
+        descr.textContent = "...The Master Pon!?";
+        descr.style["font-weight"] = "bold"
+        descr.style["font-size"] = "100px"
+        descr.classList.add("desc-animate")
+    }, descrTimeout)
+    descrTimeout += descrTimeoutAnimation + descrTimeoutNext * 2
+    setTimeout(function() {descr.classList.remove("desc-animate")}, descrTimeout)
+
+    descrTimeout += descrTimeoutNext
+    setTimeout(function() {
+        descr.style["font-size"] = "10px"
+        descr.style["padding"] = "0 0 0 0"
 
         main.classList.remove("disappear")
     }, descrTimeout)
@@ -154,6 +161,8 @@ function playRound(playerSelection, computerSelection) {
             );
         } else {
             displayResults('lost', "Opponent won... We lost the championship :((");
+            main.classList.add("disappear")
+            body.style['background-image'] = 'url("rsc/lost.jpeg")'
         }
 
     } else {
@@ -178,6 +187,9 @@ function playRound(playerSelection, computerSelection) {
             );
         } else {
             displayResults('won', "YOU ARE THE NEW CHAMPION!!!");
+            main.classList.add("disappear")
+            body.style['background-image'] = 'url("rsc/victory.jpg")'
+
         }
     }
 }
@@ -198,14 +210,7 @@ function capitalizeFirstLetter(string) {
 }
 
 
-function displayResults(strPlayerResult, str) {
-    result.animate([{ opacity: 0 }, { opacity: 0.9}], {
-        duration: 300,
-        fill: "forwards",
-        iterations: 1,
-        delay: 0,
-        easing: "ease-out",
-    });
+function displayResults(strPlayerResult, strRes) {
     if (strPlayerResult == 'won') {
         result.setAttribute(
             "style", "background-color: LawnGreen; border: 10px solid Green")
@@ -216,7 +221,11 @@ function displayResults(strPlayerResult, str) {
         result.setAttribute(
             "style", "background-color: white; border: 10px solid grey")
     }
-    result.textContent = str;
+    result.textContent = strRes;
+
+    result.classList.add("result-animate")
+    resultTimeout += resultTimeoutNext
+    setTimeout(function() {result.classList.remove("result-animate")}, resultTimeout)
 }
 
 
