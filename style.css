@@ -25,16 +25,13 @@ body {
 #title {
     display: flex;
     flex-direction: column;
-    /* flex-grow: 0.5; */
-    /* font-size: 30px; */
     height: 400px;
-    /* height: auto; */
     justify-content: center;
     
     /* Animations */
     opacity: 0;
     animation-name: titleOn;
-    animation-duration: 7s;
+    animation-duration: 25s;
     animation-delay: 0;
     animation-fill-mode: forwards;
     animation-iteration-count: 1;
@@ -47,17 +44,15 @@ body {
 }
 
 
-.desc {
+#descr {
     display: flex;
     flex-direction: column;
     background: rgb(255, 219, 151);
     background-size: cover;
     padding: 20px 20px 20px 20px;
     border: solid rgb(255, 196, 108) 10px;
-    /* flex-grow: 0.5; */
     font-size: 40px;
     color: rgba(126, 50, 0, 0.747);
-    /* height: auto; */
     justify-content: center;
     align-items: center;
     opacity: 0;
@@ -66,11 +61,7 @@ body {
 
 .desc-animate {
     /* Animation */
-    animation-name: opacityOnAndOff;
-    animation-duration: 5s;
-    animation-delay: 0;
-    animation-fill-mode: forwards;
-    animation-iteration-count: 1;
+    animation: opacityOnAndOff 5s;
 }
 
 
@@ -85,7 +76,6 @@ body {
         opacity: 0;
     }
 }
-
 
 
 .desc-small {
@@ -113,7 +103,6 @@ body {
     justify-content: center;
     align-items: center;
     height: 10px;
-    /* transform: translateY(-150px); */
 }
 
 
@@ -152,7 +141,7 @@ body {
 #button-container {
     display: flex;
     justify-content: center;
-    padding: 80px 0 50px 0;
+    padding: 60px 0 40px 0;
 }
 
 .button {
@@ -206,7 +195,7 @@ body {
     border: 3px solid rgba(155, 132, 2, 0.808);
     background: rgba(255, 237, 135, 0.808);
     color: rgb(119, 61, 19);
-    margin: 20px 20px 20px 20px;
+    margin: 10px 20px 20px 20px;
     justify-content: center;
     align-items: center;
 }
@@ -259,28 +248,9 @@ body {
 }
 
 
-.result-animate {
-    /* Animation */
-    animation-name: opacityOnAndOff;
-    animation-duration: 3s;
-    animation-delay: 0;
-    animation-fill-mode: forwards;
-    animation-iteration-count: 1;
-}
-
-
 .end-desc {
     display: flex;
     flex-direction: column;
-}
-
-
-.fade-out {
-    animation-name: fade-out;
-    animation-duration: 800ms;
-    animation-timing-function: ease-in;
-    animation-iteration-count: 1;
-    animation-fill-mode: forwards;
 }
 
 

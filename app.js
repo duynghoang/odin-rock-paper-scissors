@@ -7,6 +7,7 @@ const descrContainer = document.querySelector("#descr-container")
 const body = document.querySelector("#body")
 const main = document.querySelector("#main");
 const title = document.querySelector("#title");
+const game = document.querySelector("#game-container");
 const result = document.querySelector("#result-announce");
 const descr = document.querySelector("#descr")
 
@@ -29,6 +30,7 @@ allSelections.forEach(selection => {
     selection.addEventListener("click", () => {
         playerSelection = selection.id.toLowerCase();
         playRound(playerSelection, computerSelection);
+        requestAnimation(result, "opacityOnAndOff", 3)
         
         if (playerScore === 5 || computerScore === 5) {
             declareWinner();
@@ -38,67 +40,76 @@ allSelections.forEach(selection => {
 
 
 function introduction() {
-    title.classList.add("load")
     setTimeout(function() {
-        descr.classList.add("desc-animate")
+        descr.classList.toggle("desc-animate")
     }, descrTimeout)
     descrTimeout += descrTimeoutAnimation
     setTimeout(function() {
-        descr.classList.remove("desc-animate")
+        descr.classList.toggle("desc-animate")
     }, descrTimeout)
 
     descrTimeout += descrTimeoutNext
     setTimeout(function() {
         descr.textContent = "All of the greatest Jan Ken Pon Heroes have gathered here...";
-        descr.classList.add("desc-animate")
+        descr.classList.toggle("desc-animate")
     }, descrTimeout)
     descrTimeout += descrTimeoutAnimation
-    setTimeout(function() {descr.classList.remove("desc-animate")}, descrTimeout)
+    setTimeout(function() {
+        descr.classList.toggle("desc-animate")
+    }, descrTimeout)
 
     descrTimeout += descrTimeoutNext
     setTimeout(function() {
         descr.textContent = "for the Ultimate Showdown!!";
         descr.style["font-weight"] = "bold"
         descr.style["font-size"] = "100px"
-        descr.classList.add("desc-animate")
+        descr.classList.toggle("desc-animate")
     }, descrTimeout)
     descrTimeout += descrTimeoutAnimation
-    setTimeout(function() {descr.classList.remove("desc-animate")}, descrTimeout)
+    setTimeout(function() {
+        descr.classList.toggle("desc-animate")
+    }, descrTimeout)
 
     descrTimeout += descrTimeoutNext
     setTimeout(function() {
         descr.textContent = "Now...";
         descr.style["font-weight"] = "normal"
         descr.style["font-size"] = "50px"
-        descr.classList.add("desc-animate")
+        descr.classList.toggle("desc-animate")
     }, descrTimeout)
     descrTimeout += descrTimeoutAnimation
-    setTimeout(function() {descr.classList.remove("desc-animate")}, descrTimeout)
+    setTimeout(function() {
+        descr.classList.toggle("desc-animate")
+    }, descrTimeout)
 
     descrTimeout += descrTimeoutNext
     setTimeout(function() {
         descr.textContent = "Do you have what it takes to become...";
-        descr.classList.add("desc-animate")
+        descr.classList.toggle("desc-animate")
     }, descrTimeout)
     descrTimeout += descrTimeoutAnimation
-    setTimeout(function() {descr.classList.remove("desc-animate")}, descrTimeout)
+    setTimeout(function() {
+        descr.classList.toggle("desc-animate")
+    }, descrTimeout)
 
     descrTimeout += descrTimeoutNext
     setTimeout(function() {
         descr.textContent = "...The Master Pon!?";
         descr.style["font-weight"] = "bold"
         descr.style["font-size"] = "100px"
-        descr.classList.add("desc-animate")
+        descr.classList.toggle("desc-animate")
     }, descrTimeout)
     descrTimeout += descrTimeoutAnimation + descrTimeoutNext * 2
-    setTimeout(function() {descr.classList.remove("desc-animate")}, descrTimeout)
+    setTimeout(function() {
+        descr.classList.toggle("desc-animate")
+    }, descrTimeout)
 
     descrTimeout += descrTimeoutNext
     setTimeout(function() {
         descr.style["font-size"] = "10px"
         descr.style["padding"] = "0 0 0 0"
 
-        main.classList.remove("disappear")
+        game.classList.toggle("disappear")
     }, descrTimeout)
 
 }
@@ -167,7 +178,7 @@ function playRound(playerSelection, computerSelection) {
         }
 
     } else {
-        playerScore = ++playerScore;
+        playerScore ++;
         keepPlayerScore();
 
         if (playerScore === 1) {
@@ -223,12 +234,16 @@ function displayResults(strPlayerResult, strRes) {
             "style", "background-color: white; border: 10px solid grey")
     }
     result.textContent = strRes;
-
-    result.classList.add("result-animate")
-    resultTimeout += resultTimeoutNext
-    setTimeout(function() {result.classList.remove("result-animate")}, resultTimeout)
 }
 
+function requestAnimation(element, animationName, secs) {
+    element.style.animation = 'none'
+    clearInterval(element)
+    window.requestAnimationFrame(function() {
+        element.style.animation = animationName + ' ' + secs + 's'
+    })
+    console.log(element.style.animation)
+}
 
 
 function keepPlayerScore() {
